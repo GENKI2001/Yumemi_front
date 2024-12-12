@@ -1,4 +1,5 @@
 import React from 'react';
+import RoundWhiteButton from '../../molecules/button/RoundWhiteButton';
 import ImgLogo from '../../molecules/logo/ImgLogo';
 
 interface AppHeaderProps {
@@ -23,9 +24,9 @@ const AppHeader: React.FC<AppHeaderProps> = ({
 
   const contentStyle: React.CSSProperties = {
     margin: '0 auto',
-    padding: '0 2rem',
+    width: '75%',
     display: 'flex',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
     alignItems: 'center',
   };
 
@@ -33,6 +34,27 @@ const AppHeader: React.FC<AppHeaderProps> = ({
     <header className={className} style={{ ...defaultHeaderStyle, ...style }}>
       <div style={contentStyle}>
         <ImgLogo img_src={img_src} alt={alt ?? 'Logo'} />
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center', // 水平方向中央揃え
+            alignItems: 'center', // 垂直方向中央揃え
+            gap: '8px', // ボタン間のスペースを8px
+          }}
+        >
+          <RoundWhiteButton
+            text="Sign In"
+            onClick={() => {
+              alert('Sign In');
+            }}
+          />
+          <RoundWhiteButton
+            text="Sign Up"
+            onClick={() => {
+              alert('Sign In');
+            }}
+          />
+        </div>
       </div>
     </header>
   );
