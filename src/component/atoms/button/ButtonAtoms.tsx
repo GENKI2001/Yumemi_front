@@ -9,6 +9,7 @@ interface ImgProps {
 }
 
 const ButtonAtoms: React.FC<ImgProps> = ({
+  text,
   onClick,
   style,
   className,
@@ -20,7 +21,10 @@ const ButtonAtoms: React.FC<ImgProps> = ({
       disabled={disabled} // 明示的にdisabledを適用
       className={className}
       style={style}
-    />
+    >
+      {/* 文字をここへ */}
+      <label>{text}</label>
+    </button>
   );
 };
 
