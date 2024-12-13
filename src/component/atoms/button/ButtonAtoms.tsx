@@ -23,7 +23,7 @@ const ButtonAtoms: React.FC<ImgProps> = ({
       style={style}
     >
       {/* 文字をここへ */}
-      <label>{text}</label>
+      {text}
     </button>
   );
 };
