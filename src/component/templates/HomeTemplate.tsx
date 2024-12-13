@@ -39,7 +39,6 @@ const HomeTemplate: React.FC = () => {
           columns={7}
           options={[
             { label: '東京都', checked: false },
-            { label: '東京都', checked: false },
             { label: '東京都', checked: true },
           ]}
         />
