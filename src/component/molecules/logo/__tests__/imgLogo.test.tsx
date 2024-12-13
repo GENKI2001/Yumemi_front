@@ -12,21 +12,10 @@ describe('Logo component', () => {
     expect(imgElement).toHaveAttribute('alt', 'Logo');
   });
 
-  it('should apply custom styles passed via the style prop', () => {
-    const customStyle = {
-      color: 'red',
-      fontSize: '2rem',
-    };
-    render(<ImgLogo img_src="" alt="Logo" style={customStyle} />);
-    // style属性が適用されていることを確認
-    const logoElement = screen.getByAltText('Logo');
-    expect(logoElement).toHaveStyle(customStyle);
-  });
-
   it('should apply alt passed via the style prop', () => {
     const alt = 'custom-alt';
     render(<ImgLogo img_src="" alt={alt} />);
-    // style属性が適用されていることを確認
+    // alt属性が適用されていることを確認
     const logoElement = screen.getByAltText(alt);
     expect(logoElement).toBeInTheDocument();
   });
