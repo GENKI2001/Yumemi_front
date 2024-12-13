@@ -3,6 +3,7 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import React from 'react';
 import CheckboxGrid from '../molecules/checkboxGrid/CheckboxGrid';
+import ModeButtons from '../organisms/button/ModeButtons';
 import AppHeader from '../organisms/header/AppHeader';
 import ModeSection from '../organisms/titleSection/ModeSection';
 import PrefecturePopulationSection from '../organisms/titleSection/PrefecturePopulationSection';
@@ -33,6 +34,7 @@ const HomeTemplate: React.FC = () => {
           <HighchartsReact highcharts={Highcharts} options={options} />
         </section>
         <ModeSection />
+        <ModeButtons />
         <PrefectureSelectSection />
         <CheckboxGrid
           onChange={() => {}}
