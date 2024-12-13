@@ -9,12 +9,7 @@ interface LogoProps {
 
 const ImgLogo: React.FC<LogoProps> = ({ img_src, style, alt }) => {
   return (
-    <ImgAtoms
-      img_src={img_src}
-      alt={alt ?? 'Logo'}
-      className={'image-logo'}
-      style={{ ...style, maxHeight: '50px', marginRight: '10px' }}
-    />
+    <ImgAtoms img_src={img_src} alt={alt ?? 'Logo'} className={'image-logo'} />
   );
 };
 
