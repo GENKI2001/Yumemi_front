@@ -1,11 +1,11 @@
-// atoms/Checkbox.tsx
 import React from 'react';
+import './Checkbox.Atoms.css';
 
 interface CheckboxProps {
-  label: string;
-  checked: boolean;
-  onChange: (checked: boolean) => void;
-  disabled?: boolean;
+  label: string; // チェックボックスのラベル
+  checked: boolean; // チェック状態
+  onChange: (checked: boolean) => void; // 変更イベント
+  disabled?: boolean; // 無効化状態
 }
 
 const Checkbox: React.FC<CheckboxProps> = ({
@@ -15,7 +15,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
   disabled = false,
 }) => {
   return (
-    <div className="flex items-center gap-2">
+    <div className="checkbox-container">
       <input
         type="checkbox"
         data-testid="checkbox-input"
@@ -26,12 +26,9 @@ const Checkbox: React.FC<CheckboxProps> = ({
           }
         }}
         disabled={disabled}
-        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 cursor-pointer disabled:cursor-not-allowed"
+        className="checkbox-input"
       />
-      <label
-        data-testid="checkbox-atoms-label"
-        className="text-sm text-gray-700 select-none cursor-pointer disabled:cursor-not-allowed"
-      >
+      <label className="checkbox-label" data-testid="checkbox-atoms-label">
         {label}
       </label>
     </div>
