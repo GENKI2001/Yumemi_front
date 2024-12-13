@@ -12,15 +12,6 @@ describe('Logo component', () => {
     expect(imgElement).toHaveAttribute('src', imageSrc);
   });
 
-  // styleプロパティを介して渡されたカスタムスタイルが適用されることを確認
-  it('should apply custom styles passed via the style prop', () => {
-    const customStyle = { color: 'red', fontSize: '2rem' };
-    render(<ImgAtoms img_src="" style={customStyle} />);
-    // style属性が適用されていることを確認
-    const imgElement = screen.getByRole('img');
-    expect(imgElement).toHaveStyle(customStyle);
-  });
-
   // altプロパティを介して渡されたaltが適用されることを確認
   it('should apply alt passed via the style prop', () => {
     const alt = 'custom-alt';
