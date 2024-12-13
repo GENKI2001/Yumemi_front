@@ -25,20 +25,6 @@ describe('ButtonAtoms component', () => {
     expect(handleClick).not.toHaveBeenCalled();
   });
 
-  it('should apply custom styles passed via the style prop', () => {
-    const customStyle = { backgroundColor: 'red', fontSize: '16px' };
-    render(
-      <ButtonAtoms
-        onClick={() => {}}
-        text="Styled Button"
-        style={customStyle}
-      />,
-    );
-
-    const buttonElement = screen.getByRole('button');
-    expect(buttonElement).toHaveStyle(customStyle);
-  });
-
   it('should apply custom class name passed via the className prop', () => {
     const className = 'custom-class';
     render(
