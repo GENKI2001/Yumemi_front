@@ -23,21 +23,14 @@ const HomeTemplate: React.FC = () => {
     <div className="home-template">
       <AppHeader img_src="yumemi.png" />
       <div className="home-template-content">
-        {/* 最初のタイトル部分 */}
         <PrefecturePopulationSection />
-
-        {/* チャート部分 */}
         <section className="home-template-chart-section">
           <HighchartsReact highcharts={Highcharts} options={options} />
         </section>
-
-        {/* 表示モード選択部分 */}
         <section className="home-template-mode-section">
           <ModeSection />
           <ModeButtons />
         </section>
-
-        {/* 都道府県選択部分 */}
         <section className="home-template-prefecture-section">
           <PrefectureSelectSection />
           <CheckboxGrid
