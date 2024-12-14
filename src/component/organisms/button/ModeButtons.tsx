@@ -1,13 +1,10 @@
 import React from 'react';
 import SelectedWhiteButton from '../../molecules/button/SelectedWhiteButton';
+import './Buttons.Organisms.css';
 
 const ModeButtons: React.FC = () => {
-  const handleClick = (index: number) => {
-    console.log(`Button ${index} clicked`);
-  };
-
   return (
-    <div style={{ display: 'flex', gap: '10px' }}>
+    <div className="buttons-container">
       <SelectedWhiteButton text="総人口" onClick={() => alert('総人口')} />
       <SelectedWhiteButton text="年少人口" onClick={() => alert('年少人口')} />
       <SelectedWhiteButton
