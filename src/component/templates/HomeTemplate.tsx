@@ -2,6 +2,7 @@
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import React from 'react';
+import { PopulationType } from '../../interface/population';
 import { PrefectureType } from '../../interface/prefecture';
 import CheckboxGrid from '../molecules/checkboxGrid/CheckboxGrid';
 import ModeButtons from '../organisms/button/ModeButtons';
@@ -13,6 +14,7 @@ import './HomeTemplate.css'; // CSSファイルをインポート
 
 interface HomeTemplateProps {
   prefectures?: PrefectureType[];
+  population?: PopulationType[];
 }
 
 const HomeTemplate: React.FC<HomeTemplateProps> = (props) => {
