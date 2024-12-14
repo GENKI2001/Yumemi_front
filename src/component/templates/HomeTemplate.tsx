@@ -2,6 +2,7 @@
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import React from 'react';
+import { PrefectureType } from '../../interface/prefecture';
 import CheckboxGrid from '../molecules/checkboxGrid/CheckboxGrid';
 import ModeButtons from '../organisms/button/ModeButtons';
 import AppHeader from '../organisms/header/AppHeader';
@@ -10,7 +11,11 @@ import PrefecturePopulationSection from '../organisms/titleSection/PrefecturePop
 import PrefectureSelectSection from '../organisms/titleSection/PrefectureSelectSection';
 import './HomeTemplate.css'; // CSSファイルをインポート
 
-const HomeTemplate: React.FC = () => {
+interface HomeTemplateProps {
+  prefectures?: PrefectureType[];
+}
+
+const HomeTemplate: React.FC<HomeTemplateProps> = (props) => {
   const options = {
     title: { text: '都道府県別の総人口' },
     series: [
@@ -42,10 +47,11 @@ const HomeTemplate: React.FC = () => {
           <PrefectureSelectSection />
           <CheckboxGrid
             columns={7}
-            options={[
-              { label: '東京都', checked: false, onChange: () => {} },
-              { label: '東京都', checked: true, onChange: () => {} },
-            ]}
+            options={(props.prefectures ?? []).map((prefecture) => ({
+              label: prefecture.prefName,
+              checked: false,
+              onChange: () => {},
+            }))}
           />
         </section>
       </div>
