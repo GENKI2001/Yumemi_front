@@ -12,7 +12,7 @@ interface LogoProps {
 const SelectedWhiteButton: React.FC<LogoProps> = ({
   text,
   onClick,
-  isSelected = true,
+  isSelected,
   disabled,
 }) => {
   return (
