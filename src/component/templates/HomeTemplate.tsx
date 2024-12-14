@@ -37,11 +37,10 @@ const HomeTemplate: React.FC = () => {
         <ModeButtons />
         <PrefectureSelectSection />
         <CheckboxGrid
-          onChange={() => {}}
           columns={7}
           options={[
-            { label: '東京都', checked: false },
-            { label: '東京都', checked: true },
+            { label: '東京都', checked: false, onChange: () => {} },
+            { label: '東京都', checked: true, onChange: () => {} },
           ]}
         />
       </div>
