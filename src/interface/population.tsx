@@ -12,5 +12,7 @@ type PopulationTitle = {
 
 export type PopulationType = {
   boundaryYear: number;
+  prefCode: number;
+  prefName: string;
   data: PopulationTitle[];
 };
