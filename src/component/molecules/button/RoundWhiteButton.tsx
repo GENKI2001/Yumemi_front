@@ -1,23 +1,18 @@
 import React from 'react';
 import ButtonAtoms from '../../atoms/button/ButtonAtoms';
+import './Button.Molecules.css';
 
 interface LogoProps {
   text: string; // 画像のソースを指定するプロパティ
   onClick: () => void; // クリックイベントを受け取るプロパティ
-  style?: React.CSSProperties; // インラインスタイルを受け取るプロパティ
-  disabled?: boolean;
+  disabled?: boolean; // ボタンの無効化状態
 }
 
-const RoundWhiteButton: React.FC<LogoProps> = ({
-  text,
-  style,
-  onClick,
-  disabled,
-}) => {
+const RoundWhiteButton: React.FC<LogoProps> = ({ text, onClick, disabled }) => {
   return (
     <ButtonAtoms
       text={text}
-      className="rounded-full bg-white"
+      className="round-white-button"
       onClick={onClick}
       disabled={disabled}
     />
