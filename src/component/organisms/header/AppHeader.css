@@ -1,0 +1,24 @@
+/* AppHeader の基本スタイル */
+.app-header {
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 0;
+}
+
+/* コンテンツ部分のスタイル */
+.app-header-content {
+  margin: 0 auto;
+  width: 75%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ボタンコンテナのスタイル */
+.app-header-buttons {
+  display: flex;
+  justify-content: center; /* 水平方向中央揃え */
+  align-items: center; /* 垂直方向中央揃え */
+  gap: 8px; /* ボタン間のスペースを8px */
+}
