@@ -1,47 +1,18 @@
 import React from 'react';
 import RoundWhiteButton from '../../molecules/button/RoundWhiteButton';
 import ImgLogo from '../../molecules/logo/ImgLogo';
+import './AppHeader.css';
 
 interface AppHeaderProps {
-  img_src: string;
-  style?: React.CSSProperties;
-  alt?: string;
-  className?: string;
+  img_src: string; // ロゴ画像のソースを指定するプロパティ
 }
 
-const AppHeader: React.FC<AppHeaderProps> = ({
-  img_src,
-  style,
-  alt,
-  className,
-}) => {
-  const defaultHeaderStyle: React.CSSProperties = {
-    width: '100%',
-    backgroundColor: '#ffffff',
-    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-    padding: '0.5rem 0',
-  };
-
-  const contentStyle: React.CSSProperties = {
-    margin: '0 auto',
-    width: '75%',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  };
-
+const AppHeader: React.FC<AppHeaderProps> = ({ img_src }) => {
   return (
-    <header className={className} style={{ ...defaultHeaderStyle, ...style }}>
-      <div style={contentStyle}>
-        <ImgLogo img_src={img_src} alt={alt ?? 'Logo'} />
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center', // 水平方向中央揃え
-            alignItems: 'center', // 垂直方向中央揃え
-            gap: '8px', // ボタン間のスペースを8px
-          }}
-        >
+    <header className={`app-header`}>
+      <div className="app-header-content">
+        <ImgLogo img_src={img_src} alt={'LogoImage'} />
+        <div className="app-header-buttons">
           <RoundWhiteButton
             text="Sign In"
             onClick={() => {
