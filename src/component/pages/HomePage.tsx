@@ -4,7 +4,7 @@ import { useGetPrefectures } from '../../services/api/prefecture/useGetPrefectur
 import HomeTemplate from '../templates/HomeTemplate';
 
 const HomePage: React.FC = () => {
-  const { data: prefectures, isLoading, error } = useGetPrefectures();
+  const { data: prefectures } = useGetPrefectures();
   return <HomeTemplate prefectures={prefectures} />;
 };
 
