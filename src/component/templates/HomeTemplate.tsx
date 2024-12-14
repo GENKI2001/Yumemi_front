@@ -1,4 +1,4 @@
-// ホームのpagesを作成
+// ホームのtemplatesを作成
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import React from 'react';
@@ -8,6 +8,7 @@ import AppHeader from '../organisms/header/AppHeader';
 import ModeSection from '../organisms/titleSection/ModeSection';
 import PrefecturePopulationSection from '../organisms/titleSection/PrefecturePopulationSection';
 import PrefectureSelectSection from '../organisms/titleSection/PrefectureSelectSection';
+import './HomeTemplate.css'; // CSSファイルをインポート
 
 const HomeTemplate: React.FC = () => {
   const options = {
@@ -19,30 +20,27 @@ const HomeTemplate: React.FC = () => {
   };
 
   return (
-    <div
-      style={{
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      }}
-    >
+    <div className="home-template">
       <AppHeader img_src="yumemi.png" />
-      <div style={{ width: '60%' }}>
+      <div className="home-template-content">
         <PrefecturePopulationSection />
-        <section>
+        <section className="home-template-chart-section">
           <HighchartsReact highcharts={Highcharts} options={options} />
         </section>
-        <ModeSection />
-        <ModeButtons />
-        <PrefectureSelectSection />
-        <CheckboxGrid
-          columns={7}
-          options={[
-            { label: '東京都', checked: false, onChange: () => {} },
-            { label: '東京都', checked: true, onChange: () => {} },
-          ]}
-        />
+        <section className="home-template-mode-section">
+          <ModeSection />
+          <ModeButtons />
+        </section>
+        <section className="home-template-prefecture-section">
+          <PrefectureSelectSection />
+          <CheckboxGrid
+            columns={7}
+            options={[
+              { label: '東京都', checked: false, onChange: () => {} },
+              { label: '東京都', checked: true, onChange: () => {} },
+            ]}
+          />
+        </section>
       </div>
     </div>
   );
