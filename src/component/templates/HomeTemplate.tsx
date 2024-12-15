@@ -1,51 +1,82 @@
 // ホームのtemplatesを作成
-import Highcharts from 'highcharts';
-import HighchartsReact from 'highcharts-react-official';
-import React from 'react';
-import CheckboxGrid from '../molecules/checkboxGrid/CheckboxGrid';
+import React, { useEffect, useState } from 'react';
+import { PopulationType } from '../../interface/population';
+import { PrefectureType } from '../../interface/prefecture';
 import ModeButtons from '../organisms/button/ModeButtons';
+import PopulationChart from '../organisms/chart/PopulationChart';
+import PrefecturesCheckboxGrid from '../organisms/checkboxGrid/PrefecturesCheckboxGrid';
 import AppHeader from '../organisms/header/AppHeader';
 import ModeSection from '../organisms/titleSection/ModeSection';
 import PrefecturePopulationSection from '../organisms/titleSection/PrefecturePopulationSection';
 import PrefectureSelectSection from '../organisms/titleSection/PrefectureSelectSection';
-import './HomeTemplate.css'; // CSSファイルをインポート
+import './HomeTemplate.css';
 
-const HomeTemplate: React.FC = () => {
-  const options = {
-    title: { text: '都道府県別の総人口' },
-    series: [
-      { name: '東京都', data: [10, 20, 30, 40, 50] },
-      { name: '鹿児島', data: [4, 2, 7, 8, 13] },
-    ],
+interface HomeTemplateProps {
+  selectedPrefectures: PrefectureType[];
+  prefectures: PrefectureType[];
+  population: PopulationType[];
+}
+
+const HomeTemplate: React.FC<HomeTemplateProps> = (props) => {
+  // あとでロジックを切り分けます。今はここに書いています。
+  const [columns, setColumns] = useState<number>(6); // デフォルトで6カラム
+
+  // ウィンドウの幅に応じてカラム数を計算
+  const calculateColumns = (width: number): number => {
+    if (width > 1200) return 7;
+    if (width > 900) return 6;
+    if (width > 600) return 5;
+    if (width > 450) return 4;
+    return 3;
   };
+
+  useEffect(() => {
+    // 初回のカラム数設定
+    setColumns(calculateColumns(window.innerWidth));
+
+    const handleResize = () => {
+      setColumns(calculateColumns(window.innerWidth));
+    };
+
+    window.addEventListener('resize', handleResize); // リサイズイベントを監視
+    return () => {
+      window.removeEventListener('resize', handleResize); // クリーンアップ
+    };
+  }, []);
 
   return (
     <div className="home-template">
+      {/* ヘッダー部分 */}
       <AppHeader img_src="yumemi.png" />
+
+      {/* コンテンツ部分 */}
       <div className="home-template-content">
-        {/* 最初のタイトル部分 */}
+        {/* 最初のタイトル */}
         <PrefecturePopulationSection />
 
-        {/* チャート部分 */}
+        {/* グラフチャート */}
         <section className="home-template-chart-section">
-          <HighchartsReact highcharts={Highcharts} options={options} />
+          <PopulationChart
+            title="都道府県別の総人口"
+            label={'年少人口'}
+            populationData={props.population ?? []}
+          />
         </section>
 
-        {/* 表示モード選択部分 */}
+        {/* 表示モード選択 */}
         <section className="home-template-mode-section">
           <ModeSection />
           <ModeButtons />
         </section>
 
-        {/* 都道府県選択部分 */}
+        {/* 都道府県チェックボックス */}
         <section className="home-template-prefecture-section">
           <PrefectureSelectSection />
-          <CheckboxGrid
-            columns={7}
-            options={[
-              { label: '東京都', checked: false, onChange: () => {} },
-              { label: '東京都', checked: true, onChange: () => {} },
-            ]}
+          <PrefecturesCheckboxGrid
+            columns={columns}
+            selectedPrefectures={props.selectedPrefectures}
+            prefectures={props.prefectures}
+            onChange={() => {}}
           />
         </section>
       </div>

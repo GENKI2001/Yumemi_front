@@ -2,6 +2,7 @@
   "name": "platform",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://GENKI2001.github.io/Yumemi_front",
   "dependencies": {
     "@tanstack/query-sync-storage-persister": "^5.62.7",
     "@tanstack/react-query": "^5.62.7",
@@ -10,6 +11,7 @@
     "@types/node": "^16.18.119",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
+    "axios": "^1.7.9",
     "dotenv": "^16.4.7",
     "highcharts": "^12.0.2",
     "highcharts-react-official": "^3.2.1",

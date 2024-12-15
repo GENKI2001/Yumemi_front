@@ -4,7 +4,7 @@ import './Checkbox.Atoms.css';
 interface CheckboxProps {
   label: string; // チェックボックスのラベル
   checked: boolean; // チェック状態
-  onChange: (checked: boolean) => void; // 変更イベント
+  onChange: () => void; // 変更イベント
   disabled?: boolean; // 無効化状態
 }
 
@@ -22,7 +22,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
         checked={checked}
         onChange={(e) => {
           if (!disabled) {
-            onChange(e.target.checked);
+            onChange();
           }
         }}
         disabled={disabled}

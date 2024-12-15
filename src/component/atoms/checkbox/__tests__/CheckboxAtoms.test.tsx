@@ -43,7 +43,6 @@ describe('Checkbox', () => {
     fireEvent.click(checkbox);
 
     expect(defaultProps.onChange).toHaveBeenCalledTimes(1);
-    expect(defaultProps.onChange).toHaveBeenCalledWith(true);
   });
 
   it('is disabled when disabled prop is true', () => {
