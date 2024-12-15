@@ -6,7 +6,11 @@ import HomeTemplate from '../templates/HomeTemplate';
 
 const HomePage: React.FC = () => {
   const { data: prefectures } = useGetPrefectures();
-  const { data: population } = useGetPopulation([1, 12]);
+  const { data: population } = useGetPopulation([
+    { prefCode: 1, prefName: '北海道' },
+    { prefCode: 12, prefName: '千葉県' },
+  ]);
+  console.log(population);
   return <HomeTemplate prefectures={prefectures} population={population} />;
 };
 

@@ -5,6 +5,7 @@ import {
 } from '@tanstack/react-query';
 import axios from 'axios';
 import { PopulationType } from '../../../interface/population';
+import { PrefectureType } from '../../../interface/prefecture';
 
 interface QueryState<T>
   extends Pick<
@@ -23,7 +24,10 @@ const apiClient = axios.create({
 });
 
 // 都道府県データを取得する関数
-const getPopulation = async (prefCode: number): Promise<PopulationType> => {
+const getPopulation = async (
+  prefCode: number,
+  prefName: string,
+): Promise<PopulationType> => {
   const response = await apiClient.get(
     '/api/v1/population/composition/perYear?prefCode=' + prefCode,
     {
@@ -32,25 +36,25 @@ const getPopulation = async (prefCode: number): Promise<PopulationType> => {
       },
     },
   );
-  return response.data.result; // レスポンスデータを返却
+  return { ...response.data.result, prefCode: prefCode, prefName: prefName }; // レスポンスデータを返却
 };
 
 // React Query用のカスタムフック
 export const useGetPopulation = (
-  prefCodes: number[],
+  prefecures: PrefectureType[],
 ): QueryState<PopulationType[]> => {
   const queryClient = useQueryClient();
 
   const prefectureQueries = useQueries({
-    queries: prefCodes.map((prefCode) => ({
-      queryKey: ['prefecture', prefCode],
-      queryFn: () => getPopulation(prefCode),
+    queries: prefecures.map((pref: PrefectureType) => ({
+      queryKey: ['prefecture', pref.prefCode],
+      queryFn: () => getPopulation(pref.prefCode, pref.prefName),
       // キャッシュの設定
       staleTime: 5 * 60 * 1000, // 5分間はキャッシュを新鮮として扱う
       cacheTime: 30 * 60 * 1000, // 30分間キャッシュを保持
       // オプションでプリフェッチしたデータを使用
       initialData: () => {
-        return queryClient.getQueryData(['prefecture', prefCode]);
+        return queryClient.getQueryData(['prefecture', pref.prefCode]);
       },
     })),
   });
