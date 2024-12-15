@@ -1,5 +1,5 @@
 // ホームのtemplatesを作成
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { PopulationType } from '../../interface/population';
 import { PrefectureType } from '../../interface/prefecture';
 import ModeButtons from '../organisms/button/ModeButtons';
@@ -18,6 +18,32 @@ interface HomeTemplateProps {
 }
 
 const HomeTemplate: React.FC<HomeTemplateProps> = (props) => {
+  // あとでロジックを切り分けます。今はここに書いています。
+  const [columns, setColumns] = useState<number>(6); // デフォルトで6カラム
+
+  // ウィンドウの幅に応じてカラム数を計算
+  const calculateColumns = (width: number): number => {
+    if (width > 1200) return 7;
+    if (width > 900) return 6;
+    if (width > 600) return 5;
+    if (width > 450) return 4;
+    return 3;
+  };
+
+  useEffect(() => {
+    // 初回のカラム数設定
+    setColumns(calculateColumns(window.innerWidth));
+
+    const handleResize = () => {
+      setColumns(calculateColumns(window.innerWidth));
+    };
+
+    window.addEventListener('resize', handleResize); // リサイズイベントを監視
+    return () => {
+      window.removeEventListener('resize', handleResize); // クリーンアップ
+    };
+  }, []);
+
   return (
     <div className="home-template">
       {/* ヘッダー部分 */}
@@ -47,7 +73,7 @@ const HomeTemplate: React.FC<HomeTemplateProps> = (props) => {
         <section className="home-template-prefecture-section">
           <PrefectureSelectSection />
           <PrefecturesCheckboxGrid
-            columns={6}
+            columns={columns}
             selectedPrefectures={props.selectedPrefectures}
             prefectures={props.prefectures}
             onChange={() => {}}
