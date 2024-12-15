@@ -1,11 +1,10 @@
 // ホームのtemplatesを作成
-import Highcharts from 'highcharts';
-import HighchartsReact from 'highcharts-react-official';
 import React from 'react';
 import { PopulationType } from '../../interface/population';
 import { PrefectureType } from '../../interface/prefecture';
 import CheckboxGrid from '../molecules/checkboxGrid/CheckboxGrid';
 import ModeButtons from '../organisms/button/ModeButtons';
+import PopulationChart from '../organisms/chart/PopulationChart';
 import AppHeader from '../organisms/header/AppHeader';
 import ModeSection from '../organisms/titleSection/ModeSection';
 import PrefecturePopulationSection from '../organisms/titleSection/PrefecturePopulationSection';
@@ -18,14 +17,6 @@ interface HomeTemplateProps {
 }
 
 const HomeTemplate: React.FC<HomeTemplateProps> = (props) => {
-  const options = {
-    title: { text: '都道府県別の総人口' },
-    series: [
-      { name: '東京都', data: [10, 20, 30, 40, 50] },
-      { name: '鹿児島', data: [4, 2, 7, 8, 13] },
-    ],
-  };
-
   return (
     <div className="home-template">
       <AppHeader img_src="yumemi.png" />
@@ -35,7 +26,11 @@ const HomeTemplate: React.FC<HomeTemplateProps> = (props) => {
 
         {/* チャート部分 */}
         <section className="home-template-chart-section">
-          <HighchartsReact highcharts={Highcharts} options={options} />
+          <PopulationChart
+            title="都道府県別の総人口"
+            label={'年少人口'}
+            populationData={props.population ?? []}
+          />
         </section>
 
         {/* 表示モード選択部分 */}
