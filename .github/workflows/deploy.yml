@@ -8,16 +8,20 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
+    # 同時実行を制御して、デプロイの競合を防ぐ
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+
     strategy:
       matrix:
-        node-version: [22.x]
+        node-version: [22.x] # Node.js 22.xを使用
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
@@ -26,11 +30,15 @@ jobs:
       run: npm ci
 
     - name: Build
+      env:
+        REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
+        REACT_APP_X_API_KEY: ${{ secrets.REACT_APP_X_API_KEY }}
+        REACT_BASE_URL: Yumemi_front
       run: npm run build
 
-    - name: Deploy to GitHub Pages
-          uses: JamesIves/github-pages-deploy-action@v4
-          with:
-            folder: build  # Reactのビルド出力ディレクトリ
-            branch: gh-pages  # デプロイ先のブランチ
-            clean: true  # デプロイ前にgh-pagesブランチをクリーンアップする
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v4  # peaceirisのGitHub Pages用アクション
+      if: ${{ github.ref == 'refs/heads/master' }}  # masterブランチの場合のみデプロイ
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}  # GitHub提供の認証トークン
+        publish_dir: ./build  # デプロイするディレクトリ
