@@ -2,9 +2,9 @@
 import React from 'react';
 import { PopulationType } from '../../interface/population';
 import { PrefectureType } from '../../interface/prefecture';
-import CheckboxGrid from '../molecules/checkboxGrid/CheckboxGrid';
 import ModeButtons from '../organisms/button/ModeButtons';
 import PopulationChart from '../organisms/chart/PopulationChart';
+import PrefecturesCheckboxGrid from '../organisms/checkboxGrid/PrefecturesCheckboxGrid';
 import AppHeader from '../organisms/header/AppHeader';
 import ModeSection from '../organisms/titleSection/ModeSection';
 import PrefecturePopulationSection from '../organisms/titleSection/PrefecturePopulationSection';
@@ -45,13 +45,11 @@ const HomeTemplate: React.FC<HomeTemplateProps> = (props) => {
         {/* 都道府県チェックボックス */}
         <section className="home-template-prefecture-section">
           <PrefectureSelectSection />
-          <CheckboxGrid
-            columns={7}
-            options={(props.prefectures ?? []).map((prefecture) => ({
-              label: prefecture.prefName,
-              checked: false,
-              onChange: () => {},
-            }))}
+          <PrefecturesCheckboxGrid
+            columns={6}
+            selectedPrefectures={[{ prefCode: 1, prefName: '北海道' }]}
+            prefectures={props.prefectures ?? []}
+            onChange={() => {}}
           />
         </section>
       </div>
