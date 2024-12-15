@@ -5,7 +5,7 @@ import './CheckboxGrid.css';
 
 interface CheckboxOption {
   label: string; // チェックボックスのラベル
-  onChange: (checked: boolean) => void; // チェックボックスの変更イベント
+  onChange: () => void; // チェックボックスの変更イベント
   checked: boolean; // チェック状態
   disabled?: boolean; // チェックボックスの無効化状態
 }
@@ -27,7 +27,7 @@ const CheckboxGrid: React.FC<CheckboxGridProps> = ({
           label={option.label}
           checked={option.checked}
           disabled={option.disabled}
-          onChange={(checked) => option.onChange(checked)}
+          onChange={() => option.onChange()}
         />
       ))}
     </div>

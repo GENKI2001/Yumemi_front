@@ -38,7 +38,7 @@ describe('CheckboxGrid Component', () => {
     const checkbox = screen.getAllByTestId('checkbox-input')[0];
     fireEvent.click(checkbox);
 
-    expect(mockOnChange).toHaveBeenCalledWith(true);
+    expect(mockOnChange).toHaveBeenCalledTimes(1);
   });
 
   // オプションに基づいてチェックボックスを正しく無効にすることを確認
