@@ -30,10 +30,10 @@ jobs:
       run: npm ci
 
     - name: Build
-      # secretに設定した環境変数を使う
       env:
         REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
         REACT_APP_X_API_KEY: ${{ secrets.REACT_APP_X_API_KEY }}
+        REACT_BASE_URL: Yumemi_front
       run: npm run build
 
     - name: Deploy
