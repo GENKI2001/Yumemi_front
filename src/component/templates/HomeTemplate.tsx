@@ -9,7 +9,7 @@ import AppHeader from '../organisms/header/AppHeader';
 import ModeSection from '../organisms/titleSection/ModeSection';
 import PrefecturePopulationSection from '../organisms/titleSection/PrefecturePopulationSection';
 import PrefectureSelectSection from '../organisms/titleSection/PrefectureSelectSection';
-import './HomeTemplate.css'; // CSSファイルをインポート
+import './HomeTemplate.css';
 
 interface HomeTemplateProps {
   prefectures?: PrefectureType[];
@@ -19,12 +19,15 @@ interface HomeTemplateProps {
 const HomeTemplate: React.FC<HomeTemplateProps> = (props) => {
   return (
     <div className="home-template">
+      {/* ヘッダー部分 */}
       <AppHeader img_src="yumemi.png" />
+
+      {/* コンテンツ部分 */}
       <div className="home-template-content">
-        {/* 最初のタイトル部分 */}
+        {/* 最初のタイトル */}
         <PrefecturePopulationSection />
 
-        {/* チャート部分 */}
+        {/* グラフチャート */}
         <section className="home-template-chart-section">
           <PopulationChart
             title="都道府県別の総人口"
@@ -33,13 +36,13 @@ const HomeTemplate: React.FC<HomeTemplateProps> = (props) => {
           />
         </section>
 
-        {/* 表示モード選択部分 */}
+        {/* 表示モード選択 */}
         <section className="home-template-mode-section">
           <ModeSection />
           <ModeButtons />
         </section>
 
-        {/* 都道府県選択部分 */}
+        {/* 都道府県チェックボックス */}
         <section className="home-template-prefecture-section">
           <PrefectureSelectSection />
           <CheckboxGrid
