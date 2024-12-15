@@ -12,8 +12,9 @@ import PrefectureSelectSection from '../organisms/titleSection/PrefectureSelectS
 import './HomeTemplate.css';
 
 interface HomeTemplateProps {
-  prefectures?: PrefectureType[];
-  population?: PopulationType[];
+  selectedPrefectures: PrefectureType[];
+  prefectures: PrefectureType[];
+  population: PopulationType[];
 }
 
 const HomeTemplate: React.FC<HomeTemplateProps> = (props) => {
@@ -47,8 +48,8 @@ const HomeTemplate: React.FC<HomeTemplateProps> = (props) => {
           <PrefectureSelectSection />
           <PrefecturesCheckboxGrid
             columns={6}
-            selectedPrefectures={[{ prefCode: 1, prefName: '北海道' }]}
-            prefectures={props.prefectures ?? []}
+            selectedPrefectures={props.selectedPrefectures}
+            prefectures={props.prefectures}
             onChange={() => {}}
           />
         </section>
