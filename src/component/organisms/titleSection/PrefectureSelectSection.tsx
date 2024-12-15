@@ -1,4 +1,3 @@
-// Organisms/PrefecturePopulationTrend.tsx
 import { TitleDescription } from '../../molecules/text/TitleDescription';
 
 const PrefectureSelectSection = () => {
